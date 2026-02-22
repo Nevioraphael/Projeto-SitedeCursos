@@ -1,0 +1,21 @@
+{
+  "name": "projeto-sitedecursos",
+  "version": "1.0.0",
+  "description": "Desenvolvimento de um site de venda de cursos para a disciplina de PPI2026",
+  "homepage": "https://github.com/Nevioraphael/Projeto-SitedeCursos#readme",
+  "bugs": {
+    "url": "https://github.com/Nevioraphael/Projeto-SitedeCursos/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nevioraphael/Projeto-SitedeCursos.git"
+  },
+  "license": "ISC",
+  "author": "Nevio Raphael",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
