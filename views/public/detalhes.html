@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Curso</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Detalhes do Curso</h1>
+        <nav>
+            <a href="index.html">Voltar para Home</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="detalhes-card">
+            
+            <div class="info-grid">
+                <p><strong>Instrutor: Paulo Moreira</strong> <span id="curso-instrutor"></span></p>
+                <p><strong>Nível:Intermediário/Vançado</strong> <span id="curso-nivel"></span></p>
+                <p><strong>Carga Horária: 200 H</strong> <span id="curso-duracao"></span> horas</p>
+                <p><strong>Vagas Disponíveis:</strong> <span id="curso-vagas"></span></p>
+            </div>
+
+            <div class="descricao-box">
+                <h3>Descrição</h3>
+                <p id="curso-desc"></p>
+            </div>
+
+            <div class="compra-box">
+                <p class="preco-unitario">Preço Unitário: <span id="preco-display">R$ 0,00</span></p>
+                
+                <label for="qtd-vagas">Quantidade de Vagas:</label>
+                <input type="number" id="qtd-vagas" value="1" min="1" max="10">
+                
+                <div class="total-box">
+                    <h3>Valor Total: <span id="valor-total">R$ 0,00</span></h3>
+                </div>
+                
+                <button class="btn-comprar">Finalizar Compra</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- O JavaScript é carregado do servidor -->
+    <script src="script.js"></script>
+</body>
+</html>

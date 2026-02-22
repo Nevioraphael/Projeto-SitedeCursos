@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos Online - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Portal de Cursos Online</h1>
+        <nav>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Cursos Disponíveis</h2>
+        <div class="grid-cursos">
+            <!-- Curso 1 -->
+            <div class="card">
+                <h3>Desenvolvimento Web Fullstack</h3>
+                <p><strong>Início:</strong> 10/11/2023</p>
+                <p><strong>Duração:</strong> 40 horas</p>
+                <p class="preco">R$ 499,90</p>
+                <!-- Passamos os dados via URL para a página de detalhes -->
+                <a href="detalhes.html?id=1&nome=Desenvolvimento Web Fullstack&duracao=40&preco=499.90&instrutor=João Silva&nivel=Intermediário&vagas=20&desc=Aprenda HTML, CSS, JS e Node do zero ao avançado." class="btn">Ver Detalhes</a>
+            </div>
+
+            <!-- Curso 2 -->
+            <div class="card">
+                <h3>Python para Data Science</h3>
+                <p><strong>Início:</strong> 15/11/2023</p>
+                <p><strong>Duração:</strong> 60 horas</p>
+                <p class="preco">R$ 650,00</p>
+                <a href="detalhes.html?id=2&nome=Python para Data Science&duracao=60&preco=650.00&instrutor=Maria Souza&nivel=Avançado&vagas=10&desc=Domine a análise de dados com Pandas, NumPy e Matplotlib." class="btn">Ver Detalhes</a>
+            </div>
+
+            <!-- Curso 3 -->
+            <div class="card">
+                <h3>Introdução ao UX/UI Design</h3>
+                <p><strong>Início:</strong> 01/12/2023</p>
+                <p><strong>Duração:</strong> 20 horas</p>
+                <p class="preco">R$ 299,90</p>
+                <a href="detalhes.html?id=3&nome=Introdução ao UX/UI Design&duracao=20&preco=299.90&instrutor=Carlos Lima&nivel=Iniciante&vagas=50&desc=Crie interfaces incríveis focadas na experiência do usuário." class="btn">Ver Detalhes</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
