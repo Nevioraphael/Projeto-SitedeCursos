@@ -12,12 +12,6 @@ app.use(express.static('./views/public'));
 //qs - extended = true
 app.use(express.urlencoded({extended: true}));
 
-const express = require('express');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const path = require('path');
-const fs = require('fs');
-
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,11 +19,16 @@ app.use(bodyParser.json());
 
 // Configuração de sessão
 app.use(session({
-    secret: 'seu_segredo_aqui',
-    resave: false,
+    secret: 'minh4ch@v&s3cr&t@',
+    resave: false, 
     saveUninitialized: true,
-    cookie: { secure: false }
-}));
+    cookie: {
+        secure: false,
+        httpOnly: true,
+        maxAge: 1000 * 60 * 15 // 15 minutos de sessão
+    }
+}
+));
 
 // Servir arquivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
