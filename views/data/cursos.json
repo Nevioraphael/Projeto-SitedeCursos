@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "nome": "Desenvolvimento Web Completo",
+        "descricao": "Aprenda a criar sites e aplicações web do zero, desde HTML/CSS até JavaScript avançado.",
+        "dataInicio": "15/03/2026",
+        "duracao": "6 meses",
+        "preco": 499.90,
+        "cargaHoraria": 120,
+        "instrutor": "Prof. João Silva",
+        "nivel": "Iniciante",
+        "vagasDisponiveis": 50
+    },
+    {
+        "id": 2,
+        "nome": "Machine Learning com Python",
+        "descricao": "Domine técnicas de aprendizado de máquina e crie modelos preditivos usando Python.",
+        "dataInicio": "10/04/2026",
+        "duracao": "4 meses",
+        "preco": 699.90,
+        "cargaHoraria": 80,
+        "instrutor": "Dra. Maria Santos",
+        "nivel": "Intermediário",
+        "vagasDisponiveis": 30
+    },
+    {
+        "id": 3,
+        "nome": "Desenvolvimento Mobile com React Native",
+        "descricao": "Crie aplicativos para iOS e Android usando React Native e JavaScript.",
+        "dataInicio": "05/05/2026",
+        "duracao": "5 meses",
+        "preco": 599.90,
+        "cargaHoraria": 100,
+        "instrutor": "Prof. Carlos Oliveira",
+        "nivel": "Intermediário",
+        "vagasDisponiveis": 40
+    }
+]
