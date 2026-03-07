@@ -65,6 +65,13 @@ header nav a {
     margin: 1rem 0;
 }
 
+.card .descricao {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+    margin: 0.5rem 0;
+}
+
 .btn, .btn-comprar {
     display: inline-block;
     background-color: #3498db;

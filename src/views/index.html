@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos Online - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Portal de Cursos Online</h1>
+        <nav>
+            <a href="/index.html">Home</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Cursos Disponíveis</h2>
+        <div id="loading">Carregando cursos...</div>
+        <div class="grid-cursos" id="grid-cursos">
+            <!-- Cursos serão carregados dinamicamente -->
+        </div>
+    </main>
+
+    <script>
+        async function carregarCursos() {
+            try {
+                const response = await fetch('/api/cursos');
+                const cursos = await response.json();
+
+                const grid = document.getElementById('grid-cursos');
+                const loading = document.getElementById('loading');
+
+                loading.style.display = 'none';
+
+                if (cursos.length === 0) {
+                    grid.innerHTML = '<p>Nenhum curso disponível no momento.</p>';
+                    return;
+                }
+
+                cursos.forEach(curso => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+
+                    const dataInicio = new Date(curso.data_inicio).toLocaleDateString('pt-BR');
+                    const precoFormatado = `R$ ${parseFloat(curso.preco).toFixed(2).replace('.', ',')}`;
+
+                    card.innerHTML = `
+                        <h3>${curso.nome}</h3>
+                        <p><strong>Início:</strong> ${dataInicio}</p>
+                        <p><strong>Duração:</strong> ${curso.duracao}</p>
+                        <p><strong>Carga Horária:</strong> ${curso.carga_horaria} horas</p>
+                        <p><strong>Instrutor:</strong> ${curso.instrutor}</p>
+                        <p><strong>Nível:</strong> ${curso.nivel}</p>
+                        <p><strong>Vagas Disponíveis:</strong> ${curso.vagas_disponiveis}</p>
+                        <p class="descricao">${curso.descricao.substring(0, 150)}${curso.descricao.length > 150 ? '...' : ''}</p>
+                        <p class="preco">${precoFormatado}</p>
+                        <a href="/detalhes?id=${curso.id}" class="btn">Ver Detalhes</a>
+                        <button class="btn" style="position: relative;top: 10px; background-color: red;" onclick="deletarCurso(${curso.id})">Deletar</button>
+                    `;
+
+                    grid.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar cursos:', error);
+                document.getElementById('loading').textContent = 'Erro ao carregar cursos. Tente novamente.';
+            }
+        }
+
+        async function deletarCurso(id) {
+            if (!confirm('Tem certeza que deseja deletar este curso?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/cursos/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    // Remove o card da tela
+                    document.getElementById(`card-${id}`).remove();
+                    alert('Curso deletado com sucesso!');
+                } else {
+                    alert('Erro ao deletar curso.');
+                }
+            } catch (error) {
+                console.error('Erro ao deletar curso:', error);
+                alert('Erro ao deletar curso.');
+            }
+        }
+        // Carregar cursos quando a página carregar
+        document.addEventListener('DOMContentLoaded', carregarCursos);
+    </script>
+</body>
+</html>

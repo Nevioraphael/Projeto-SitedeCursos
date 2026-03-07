@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Curso</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Portal de Cursos Online</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div id="loading">Carregando detalhes do curso...</div>
+        <div id="detalhes-curso" class="detalhes-card" style="display:none;">
+            <h2 id="titulo"></h2>
+            <div class="info-grid">
+                <p><strong>Instrutor:</strong> <span id="instrutor"></span></p>
+                <p><strong>Nível:</strong> <span id="nivel"></span></p>
+                <p><strong>Carga Horária:</strong> <span id="carga"></span> horas</p>
+                <p><strong>Vagas Disponíveis:</strong> <span id="vagas"></span></p>
+                <p><strong>Total de Inscrições:</strong> <span id="inscricoes">0</span></p>
+            </div>
+            <div class="descricao-box">
+                <h3>Descrição</h3>
+                <p id="descricao"></p>
+            </div>
+            <div class="compra-box">
+                <p class="preco-unitario">Preço Unitário: <span id="preco">R$ 0,00</span></p>
+                <label for="qtd-vagas">Quantidade de Vagas:</label>
+                <input type="number" id="qtd-vagas" value="1" min="1" max="10">
+                <div class="total-box">
+                    <h3>Valor Total: <span id="valor-total">R$ 0,00</span></h3>
+                </div>
+                <button class="btn-comprar" onclick="finalizarCompra()">Finalizar Compra</button>
+                <button class="btn" onclick="history.back()" style="background-color: #95a5a6; margin-top: 10px;">Voltar</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let cursoAtual = null;
+
+        async function carregarDetalhes() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const cursoId = params.get('id');
+
+                if (!cursoId) {
+                    document.getElementById('loading').textContent = 'Curso não encontrado.';
+                    return;
+                }
+
+                // Buscar curso
+                const resCurso = await fetch(`/api/cursos/${cursoId}`);
+                if (!resCurso.ok) throw new Error('Curso não encontrado');
+                
+                const curso = await resCurso.json();
+                cursoAtual = curso;
+
+                // Buscar inscrições
+                const resInscricoes = await fetch(`/api/inscricoes/curso/${cursoId}`);
+                const inscricoes = resInscricoes.ok ? await resInscricoes.json() : [];
+
+                // Preencher página
+                document.getElementById('titulo').textContent = curso.nome;
+                document.getElementById('descricao').textContent = curso.descricao;
+                document.getElementById('instrutor').textContent = curso.instrutor;
+                document.getElementById('nivel').textContent = curso.nivel;
+                document.getElementById('carga').textContent = curso.carga_horaria;
+                document.getElementById('vagas').textContent = curso.vagas_disponiveis;
+                document.getElementById('inscricoes').textContent = inscricoes.length;
+                
+                const preco = parseFloat(curso.preco);
+                document.getElementById('preco').textContent = `R$ ${preco.toFixed(2).replace('.', ',')}`;
+                
+                atualizarTotal(preco);
+                document.getElementById('qtd-vagas').addEventListener('input', () => atualizarTotal(preco));
+
+                // Mostrar página
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('detalhes-curso').style.display = 'block';
+
+            } catch (erro) {
+                console.error('Erro:', erro);
+                document.getElementById('loading').textContent = 'Erro ao carregar detalhes do curso.';
+            }
+        }
+
+        function atualizarTotal(precoUnitario) {
+            const quantidade = parseInt(document.getElementById('qtd-vagas').value) || 1;
+            const total = precoUnitario * quantidade;
+            document.getElementById('valor-total').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        async function finalizarCompra() {
+            if (!cursoAtual) {
+                alert('Carregando dados... tente novamente.');
+                return;
+            }
+
+            const quantidade = parseInt(document.getElementById('qtd-vagas').value) || 1;
+            const precoUnitario = parseFloat(cursoAtual.preco);
+            const valorTotal = precoUnitario * quantidade;
+
+            try {
+                const res = await fetch('/api/inscricoes', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        curso_id: cursoAtual.id,
+                        quantidade_vagas: quantidade,
+                        valor_total: valorTotal
+                    })
+                });
+
+                if (res.ok) {
+                    alert('Inscrição realizada com sucesso!');
+                    window.location.href = '/index.html';
+                } else {
+                    const erro = await res.json();
+                    alert('Erro: ' + (erro.erro || 'Erro desconhecido'));
+                }
+            } catch (erro) {
+                alert('Erro ao conectar com o servidor.');
+                console.error(erro);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', carregarDetalhes);
+    </script>
+</body>
+</html>

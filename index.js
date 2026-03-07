@@ -1,48 +1,86 @@
+/**
+ * ============================================
+ * CONFIGURAÇÕES INICIAIS E IMPORTAÇÕES
+ * ============================================
+ */
+import 'dotenv/config';
 import express from 'express';
+import session from 'express-session';
+import multer from 'multer';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
-const host = "0.0.0.0"; //requisições podem vir de todas as interfaces do host local
-const porta = 3000; //identifica unica e exclusivamente uma aplicação nesse host
+// Importar rotas
+import routes from './src/routes.js';
+
+// Configurações do servidor
+const HOST = "0.0.0.0";
+const PORT = 3000;
+const SESSION_SECRET = 'minh4ch@v&s3cr&t@';
+const SESSION_DURATION = 1000 * 60 * 15; // 15 minutos
+
 const app = express();
-// Configuração de sessão
+
+// Resolver __dirname em ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Caminhos absolutos
+const PUBLIC_DIR = join(__dirname, 'public');
+
+// Configuração do multer para multipart/form-data
+const envioDados = multer({ 
+    storage: multer.memoryStorage(),
+    limits: { fileSize: 5 * 1024 * 1024 }
+});
+
+/**
+ * ============================================
+ * MIDDLEWARES GLOBAIS
+ * ============================================
+ */
+
+// Parse de dados JSON
+app.use(express.json());
+
+// Parse de dados de formulários urlencoded
+app.use(express.urlencoded({ extended: true }));
+
+// Servir arquivos estáticos da pasta public
+app.use(express.static(PUBLIC_DIR));
+
+// Middleware para arquivos enviados
+app.use(envioDados.none());
+
+// Configuração da sessão do usuário
 app.use(session({
-    secret: 'minh4ch@v&s3cr&t@',
-    resave: false, 
+    secret: SESSION_SECRET,
+    resave: false,
     saveUninitialized: true,
     cookie: {
         secure: false,
         httpOnly: true,
-        maxAge: 1000 * 60 * 15 // 15 minutos de sessão
+        maxAge: SESSION_DURATION
     }
-}
-));
+}));
 
-//Todo o conteúdo do direório views/public estará disponível na raiz do servidor
-app.use(express.static('./views/public'));
+/**
+ * ============================================
+ * USAR ROTAS
+ * ============================================
+ */
+app.use(routes);
 
-//escolher a biblioteca que irá processar os parâmetros da reposição
-//queryString - extended = false
-//qs - extended = true
-app.use(express.urlencoded({extended: true}));
-
-app.post("/login", (requisicao, resposta) => {
-    //precisa extrair os dados da requisição
-    //os dados estão armazenados no corpo da requisição
-    const usuario = requisicao.body.usuario;
-    const senha = requisicao.body.senha;
-    if (usuario === "admin" && senha === "123") {
-        //atualizar a sessão do usuário
-        requisicao.session.usuarioLogado = true;
-        resposta.redirect("/index.html");
-    } else {
-        resposta.redirect("/login.html");
-    }
+/**
+ * ============================================
+ * INICIALIZAÇÃO DO SERVIDOR
+ * ============================================
+ */
+app.listen(PORT, HOST, () => {
+    const displayHost = HOST === '0.0.0.0' ? 'localhost' : HOST;
+    console.log(`✅ Servidor rodando em http://${displayHost}:${PORT}`);
+    console.log(`📁 Estrutura MVC + MySQL ativa`);
+    console.log(`🔐 Autenticação por sessão ativa`);
+    console.log(`📁 PUBLIC_DIR: ${PUBLIC_DIR}`);
+    console.log(`🗄️  Banco de dados: ${process.env.DB_NAME || 'cursos_online'}`);
 });
-
-app.get("/login", (requisicao, resposta) => {
-    resposta.redirect("/login.html");
-});
-
-// Iniciar servidor
-app.listen(porta, host, () => { //arrow function
-    console.log(`Servidor rodando em http://${host}:${porta}`);
-}); //javascript aceita funções como parâmetros de outras funções
