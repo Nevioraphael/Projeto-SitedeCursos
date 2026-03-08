@@ -69,9 +69,9 @@ app.use(routes);
  */
 app.listen(PORT, HOST, () => {
     const displayHost = HOST === '0.0.0.0' ? 'localhost' : HOST;
-    console.log(`✅ Servidor rodando em http://${displayHost}:${PORT}`);
-    console.log(`📁 Estrutura MVC + MySQL ativa`);
-    console.log(`🔐 Autenticação por sessão ativa`);
-    console.log(`📁 PUBLIC_DIR: ${PUBLIC_DIR}`);
-    console.log(`🗄️  Banco de dados: ${process.env.DB_NAME || 'cursos_online'}`);
+    console.log(`Servidor rodando em http://${displayHost}:${PORT}`);
+    console.log(`Estrutura MVC + MySQL ativa`);
+    console.log(`Autenticação por sessão ativa`);
+    console.log(`PUBLIC_DIR: ${PUBLIC_DIR}`);
+    console.log(`Banco de dados: ${process.env.DB_NAME || 'cursos_online'}`);
 });

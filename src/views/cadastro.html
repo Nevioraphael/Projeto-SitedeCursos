@@ -34,14 +34,181 @@
             }
             .btn-group-custom {
                 display: flex;
-                gap: 0.5rem;
+                gap: 1rem;
                 flex-wrap: wrap;
+                align-items: center;
+                margin-top: 1.5rem;
             }
             .table-section {
                 background: white;
                 padding: 2rem;
                 border-radius: 8px;
                 box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+
+            /* ===== ESTILOS DOS BOTÕES ===== */
+            
+            /* CADASTRAR - Verde (Ação Positiva/Criação) */
+            .btn-cadastrar {
+                background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+                color: white;
+                border: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 0.95rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                white-space: nowrap;
+            }
+            .btn-cadastrar:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+                background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+                color: white;
+                text-decoration: none;
+            }
+            .btn-cadastrar:active {
+                transform: translateY(0);
+                box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+            }
+
+            /* ATUALIZAR - Azul (Ação de Modificação) */
+            .btn-atualizar {
+                background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+                color: white;
+                border: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 0.95rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                white-space: nowrap;
+            }
+            .btn-atualizar:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+                background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+                color: white;
+                text-decoration: none;
+            }
+            .btn-atualizar:active {
+                transform: translateY(0);
+                box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+            }
+
+            /* EXCLUIR - Vermelho (Ação Destrutiva) */
+            .btn-excluir {
+                background: linear-gradient(135deg, #f44336 0%, #e53935 100%);
+                color: white;
+                border: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 0.95rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                white-space: nowrap;
+            }
+            .btn-excluir:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
+                background: linear-gradient(135deg, #e53935 0%, #d32f2f 100%);
+                color: white;
+                text-decoration: none;
+            }
+            .btn-excluir:active {
+                transform: translateY(0);
+                box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+            }
+
+            /* LIMPAR - Cinza (Ação Neutra/Reset) */
+            .btn-limpar {
+                background: linear-gradient(135deg, #9E9E9E 0%, #757575 100%);
+                color: white;
+                border: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 0.95rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(158, 158, 158, 0.3);
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                white-space: nowrap;
+            }
+            .btn-limpar:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(158, 158, 158, 0.4);
+                background: linear-gradient(135deg, #757575 0%, #616161 100%);
+                color: white;
+                text-decoration: none;
+            }
+            .btn-limpar:active {
+                transform: translateY(0);
+                box-shadow: 0 2px 8px rgba(158, 158, 158, 0.3);
+            }
+
+            /* VOLTAR - Neutro com vidro/blur (Glass Effect) */
+            .btn-voltar {
+                background: rgba(255, 255, 255, 0.15);
+                color: white;
+                border: 2px solid rgba(255, 255, 255, 0.5);
+                padding: 0.65rem 1.3rem;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 0.95rem;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                white-space: nowrap;
+                backdrop-filter: blur(10px);
+            }
+            .btn-voltar:hover {
+                background: rgba(255, 255, 255, 0.25);
+                border-color: rgba(255, 255, 255, 0.8);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                color: white;
+                text-decoration: none;
+            }
+            .btn-voltar:active {
+                transform: translateY(0);
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            /* Responsividade para Mobile */
+            @media (max-width: 768px) {
+                .btn-group-custom {
+                    gap: 0.5rem;
+                    flex-direction: column;
+                }
+                .btn-cadastrar,
+                .btn-atualizar,
+                .btn-excluir,
+                .btn-limpar {
+                    width: 100%;
+                    padding: 0.7rem 1rem;
+                    font-size: 0.9rem;
+                    justify-content: center;
+                }
             }
         </style>
     </head>
@@ -52,7 +219,7 @@
                     <h1 class="mb-0">
                         <i class="bi bi-book"></i> Gerenciamento de Cursos
                     </h1>
-                    <a href="/index.html" class="btn btn-light btn-sm">
+                    <a href="/index.html" class="btn-voltar">
                         <i class="bi bi-arrow-left"></i> Voltar
                     </a>
                 </div>
@@ -64,36 +231,89 @@
             <div class="form-section">
                 <h2 class="section-title">Cadastrar Novo Curso</h2>
                 <form id="formCurso" method="POST" action="#" class="row g-3 needs-validation" novalidate>
+                    <!-- Informações Básicas -->
                     <div class="col-md-6">
                         <label for="nome" class="form-label">Nome do Curso <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="nome" name="nome" value="" required>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
                         <div class="invalid-feedback">Por favor, informe o nome do curso!</div>
                     </div>
                     
                     <div class="col-md-6">
-                        <label for="cargahoraria" class="form-label">Carga Horária <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control" id="cargahoraria" name="cargahoraria" required>
-                        <div class="invalid-feedback">Por favor, informe a carga horária!</div>
+                        <label for="instrutor" class="form-label">Instrutor <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="instrutor" name="instrutor" required>
+                        <div class="invalid-feedback">Por favor, informe o instrutor!</div>
                     </div>
 
                     <div class="col-12">
                         <label for="descricao" class="form-label">Descrição <span class="text-danger">*</span></label>
-                        <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
+                        <textarea class="form-control" id="descricao" name="descricao" rows="4" required></textarea>
                         <div class="invalid-feedback">Por favor, informe a descrição do curso!</div>
                     </div>
-                    
+
+                    <!-- Informações Técnicas -->
+                    <div class="col-md-4">
+                        <label for="carga_horaria" class="form-label">Carga Horária <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control" id="carga_horaria" name="carga_horaria" min="1" required>
+                        <div class="invalid-feedback">Por favor, informe a carga horária!</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="duracao" class="form-label">Duração <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="duracao" name="duracao" placeholder="Ex: 4 semanas" required>
+                        <div class="invalid-feedback">Por favor, informe a duração!</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="nivel" class="form-label">Nível <span class="text-danger">*</span></label>
+                        <select class="form-select" id="nivel" name="nivel" required>
+                            <option value="">Selecione o nível</option>
+                            <option value="iniciante">Iniciante</option>
+                            <option value="intermediario">Intermediário</option>
+                            <option value="avancado">Avançado</option>
+                        </select>
+                        <div class="invalid-feedback">Por favor, selecione o nível!</div>
+                    </div>
+
+                    <!-- Informações Comerciais -->
+                    <div class="col-md-4">
+                        <label for="preco" class="form-label">Preço (R$) <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control" id="preco" name="preco" step="0.01" min="0" required>
+                        <div class="invalid-feedback">Por favor, informe o preço!</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="vagas_disponiveis" class="form-label">Vagas Disponíveis <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control" id="vagas_disponiveis" name="vagas_disponiveis" min="1" required>
+                        <div class="invalid-feedback">Por favor, informe as vagas!</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="data_inicio" class="form-label">Data de Início <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control" id="data_inicio" name="data_inicio" required>
+                        <div class="invalid-feedback">Por favor, informe a data!</div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="imagem" class="form-label">URL da Imagem</label>
+                        <input type="text" class="form-control" id="imagem" name="imagem" placeholder="https://exemplo.com/imagem.jpg">
+                    </div>
+
+                    <!-- Mensagem de Feedback -->
+                    <div class="col-12" id="mensagem"></div>
+
+                    <!-- Botões de Ação -->
                     <div class="col-12">
                         <div class="btn-group-custom">
-                            <button class="btn btn-primary" id='cadastrar' type="submit">
+                            <button class="btn-cadastrar" id="cadastrar" type="submit">
                                 <i class="bi bi-plus-circle"></i> Cadastrar
                             </button>
-                            <button class="btn btn-warning" id='atualizar' type="button" style="display: none;">
+                            <button class="btn-atualizar" id="atualizar" type="submit" style="display: none;">
                                 <i class="bi bi-arrow-repeat"></i> Atualizar
                             </button>
-                            <button class="btn btn-danger" id='excluir' type="button" style="display: none;">
+                            <button class="btn-excluir" id="excluir" type="submit" style="display: none;">
                                 <i class="bi bi-trash"></i> Excluir
                             </button>
-                            <button class="btn btn-secondary" type="reset">
+                            <button class="btn-limpar" type="reset">
                                 <i class="bi bi-arrow-clockwise"></i> Limpar
                             </button>
                         </div>
