@@ -225,7 +225,7 @@ async function atualizarCurso() {
 //SEÇÃO 4: DELETAR CURSO
 async function deletarCurso(cursoId) {
     // Confirmação de segurança
-    if (!confirm('⚠️ Tem certeza que deseja DELETAR este curso?\\n\\nEsta ação não pode ser desfeita!')) {
+    if (!confirm('Tem certeza que deseja DELETAR este curso? Esta ação não pode ser desfeita!')) {
         return;
     }
     
