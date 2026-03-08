@@ -4,38 +4,185 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
         <title>Login do sistema</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(135deg, #0b2295 0%, #876da1 100%);
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            .login-container {
+                width: 100%;
+                max-width: 400px;
+                padding: 0 20px;
+            }
+
+            .card-login {
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+                overflow: hidden;
+            }
+
+            .card-header-login {
+                background: linear-gradient(135deg, #0f117c 0%, #977fae 100%);
+                color: white;
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .card-header-login h1 {
+                margin: 0;
+                font-size: 2rem;
+                font-weight: 700;
+            }
+
+            .card-header-login .subtitle {
+                font-size: 0.9rem;
+                opacity: 0.9;
+                margin-top: 0.5rem;
+            }
+
+            .card-body-login {
+                padding: 2rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-group label {
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 0.5rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .form-control {
+                border: 2px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 0.75rem 1rem;
+                transition: border-color 0.3s;
+            }
+
+            .form-control:focus {
+                border-color: #667eea;
+                box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+            }
+
+            .btn-login {
+                width: 100%;
+                padding: 0.75rem;
+                font-weight: 600;
+                border-radius: 8px;
+                margin-top: 1rem;
+                transition: all 0.3s;
+            }
+
+            .btn-login-primary {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border: none;
+            }
+
+            .btn-login-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+                color: white;
+            }
+
+            .btn-login-secondary {
+                background: #f0f0f0;
+                color: #333;
+                border: 2px solid #e0e0e0;
+            }
+
+            .btn-login-secondary:hover {
+                background: #e0e0e0;
+                color: #333;
+            }
+
+            #erro {
+                margin-bottom: 1rem;
+                border-radius: 8px;
+                border: none;
+                background: #fee;
+                color: #c33;
+            }
+
+            .invalid-feedback {
+                font-size: 0.875rem;
+                margin-top: 0.25rem;
+            }
+        </style>
     </head>
     <body>
-        <br/>
-        <div class="container w-50">
-            <h1>Login</h1>
-            
-            <!-- Mensagem de erro (oculta por padrão) -->
-            <div id="erro" class="alert alert-danger d-none" role="alert"></div>
+        <div class="login-container">
+            <div class="card card-login">
+                <!-- Cabeçalho do Card -->
+                <div class="card-header-login">
+                    <h1>Login</h1> 
+                </div>
 
-            <form id="loginForm" class="row g-3 needs-validation" novalidate>
-                <div class="row pt-4">
-                    <div class="col-md-4">
-                        <label for="usuario" class="form-label">Usuário</label>
-                        <input type="text" class="form-control" id="usuario" name="usuario" required>
-                        <div class="invalid-feedback">Informe o usuário!</div>
-                    </div>
+                <!-- Corpo do Card -->
+                <div class="card-body-login">
+                    <!-- Mensagem de erro (oculta por padrão) -->
+                    <div id="erro" class="alert d-none" role="alert"></div>
+
+                    <form id="loginForm" class="needs-validation" novalidate>
+                        <!-- Campo de Usuário -->
+                        <div class="form-group">
+                            <label for="usuario" class="form-label">
+                                <i class="bi bi-person"></i> Usuário
+                            </label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="usuario" 
+                                name="usuario" 
+                                placeholder="Digite seu usuário"
+                                required
+                            >
+                            <div class="invalid-feedback">Informe o usuário!</div>
+                        </div>
+
+                        <!-- Campo de Senha -->
+                        <div class="form-group">
+                            <label for="senha" class="form-label">
+                                <i class="bi bi-key"></i> Senha
+                            </label>
+                            <input 
+                                type="password" 
+                                class="form-control" 
+                                id="senha" 
+                                name="senha" 
+                                placeholder="Digite sua senha"
+                                required
+                            >
+                            <div class="invalid-feedback">Informe a senha!</div>
+                        </div>
+
+                        <!-- Botões -->
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-login btn-login-primary" type="submit">
+                                <i class="bi bi-box-arrow-in-right"></i> Entrar
+                            </button>
+                            <button class="btn btn-login btn-login-secondary" type="button" onclick="history.back()">
+                                <i class="bi bi-arrow-left"></i> Voltar
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div class="row pt-4">
-                  <div class="col-md-4">
-                    <label for="senha" class="form-label">Senha:</label>
-                    <input type="password" class="form-control" id="senha" name="senha" required>
-                    <div class="invalid-feedback">Informe a senha!</div>
-                  </div>
-                </div>
-                <div class="row pt-2">
-                    <div class="col-12">
-                        <button class="btn btn-primary" type="submit">Entrar</button>
-                        <button class="btn btn-secondary" type="button" onclick="history.back()">Voltar</button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
 
         <script>

@@ -38,7 +38,7 @@ router.post('/nevio', (req, res) => {
 
     console.log("Recebido POST /nevio com body:", body);
 
-    res.send("Olá, Nevio!FXDFXDFXDFXDFXDFXDFXDFXDFXD " + body.usuario) ;
+    res.send("Olá, Nevio!" + body.usuario) ;
 });
 
 /**

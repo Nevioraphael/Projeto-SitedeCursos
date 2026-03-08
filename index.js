@@ -10,7 +10,7 @@ import multer from 'multer';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
-// Importar rotas
+// Importar as rotas
 import routes from './src/routes.js';
 
 // Configurações do servidor
@@ -34,11 +34,6 @@ const envioDados = multer({
     limits: { fileSize: 5 * 1024 * 1024 }
 });
 
-/**
- * ============================================
- * MIDDLEWARES GLOBAIS
- * ============================================
- */
 
 // Parse de dados JSON
 app.use(express.json());
@@ -64,11 +59,7 @@ app.use(session({
     }
 }));
 
-/**
- * ============================================
- * USAR ROTAS
- * ============================================
- */
+// Para usar as rotas definidas em src/routes.js
 app.use(routes);
 
 /**

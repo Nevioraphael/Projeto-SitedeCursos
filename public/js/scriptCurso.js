@@ -12,22 +12,47 @@ async function carregarCursos() {
 }
 
 function exibirTabelaCursos(cursos) {
-    let html = '<table class="table table-striped"><thead><tr><th>ID</th><th>Nome</th><th>Descrição</th><th>Carga Horária</th><th>Ações</th></tr></thead><tbody>';
+    if (cursos.length === 0) {
+        document.getElementById('espacoTabela').innerHTML = '<p class="alert alert-info">Nenhum curso cadastrado ainda.</p>';
+        return;
+    }
+    
+    let html = `<div class="table-responsive mt-4">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th class="text-center">Carga Horária</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>`;
     
     cursos.forEach(curso => {
+        const cargaHoraria = curso.cargaHoraria || curso.carga_horaria || curso.cargahoraria || 0;
         html += `<tr>
-            <td>${curso.id}</td>
-            <td>${curso.nome}</td>
+            <td><span class="badge bg-secondary">${curso.id}</span></td>
+            <td><strong>${curso.nome}</strong></td>
             <td>${curso.descricao}</td>
-            <td>${curso.cargaHoraria}h</td>
-            <td>
-                <button class="btn btn-sm btn-warning" onclick="editarCurso(${curso.id})">Editar</button>
-                <button class="btn btn-sm btn-danger" onclick="deletarCurso(${curso.id})">Deletar</button>
+            <td class="text-center"><span class="badge bg-info">${cargaHoraria}h</span></td>
+            <td class="text-center">
+                <div class="btn-group" role="group">
+                    <button class="btn btn-sm btn-warning" onclick="editarCurso(${curso.id})" title="Editar curso">
+                        <i class="bi bi-pencil"></i> Editar
+                    </button>
+                    <button class="btn btn-sm btn-danger" onclick="deletarCurso(${curso.id})" title="Deletar curso">
+                        <i class="bi bi-trash"></i> Deletar
+                    </button>
+                </div>
             </td>
         </tr>`;
     });
     
-    html += '</tbody></table>';
+    html += `</tbody>
+        </table>
+    </div>`;
     document.getElementById('espacoTabela').innerHTML = html;
 }
 
