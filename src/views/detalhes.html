@@ -32,6 +32,13 @@
             </div>
             <div class="compra-box">
                 <p class="preco-unitario">Preço Unitário: <span id="preco">R$ 0,00</span></p>
+
+                <label for="nome-aluno">Nome do Aluno:</label>
+                <input type="text" id="nome-aluno" placeholder="Digite seu nome" required>
+
+                <label for="email-aluno">Email do Aluno:</label>
+                <input type="email" id="email-aluno" placeholder="Digite seu email" required>
+
                 <label for="qtd-vagas">Quantidade de Vagas:</label>
                 <input type="number" id="qtd-vagas" value="1" min="1" max="10">
                 <div class="total-box">
@@ -104,9 +111,16 @@
                 return;
             }
 
+            const nomeAluno = document.getElementById('nome-aluno').value.trim();
+            const emailAluno = document.getElementById('email-aluno').value.trim();
             const quantidade = parseInt(document.getElementById('qtd-vagas').value) || 1;
             const precoUnitario = parseFloat(cursoAtual.preco);
             const valorTotal = precoUnitario * quantidade;
+
+            if (!nomeAluno || !emailAluno) {
+                alert('Preencha nome e email para finalizar a inscrição.');
+                return;
+            }
 
             try {
                 const res = await fetch('/api/inscricoes', {
@@ -114,6 +128,8 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         curso_id: cursoAtual.id,
+                        nome_aluno: nomeAluno,
+                        email: emailAluno,
                         quantidade_vagas: quantidade,
                         valor_total: valorTotal
                     })

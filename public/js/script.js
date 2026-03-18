@@ -54,7 +54,16 @@ function atualizarTotal(precoUnitario) {
 
 // Finalizar compra
 async function finalizarCompra(cursoId, precoUnitario) {
+    const nomeAlunoInput = document.getElementById('nome-aluno');
+    const emailAlunoInput = document.getElementById('email-aluno');
+    const nomeAluno = nomeAlunoInput ? nomeAlunoInput.value.trim() : '';
+    const emailAluno = emailAlunoInput ? emailAlunoInput.value.trim() : '';
     const quantidade = parseInt(document.getElementById('qtd-vagas').value) || 1;
+
+    if (!nomeAluno || !emailAluno) {
+        alert('Por favor, preencha nome e email para finalizar a inscrição.');
+        return;
+    }
 
     try {
         const response = await fetch('/api/inscricoes', {
@@ -64,6 +73,8 @@ async function finalizarCompra(cursoId, precoUnitario) {
             },
             body: JSON.stringify({
                 curso_id: cursoId,
+                nome_aluno: nomeAluno,
+                email: emailAluno,
                 quantidade_vagas: quantidade,
                 valor_total: precoUnitario * quantidade
             })
