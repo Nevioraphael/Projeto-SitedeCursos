@@ -1,8 +1,5 @@
-/**
- * ============================================
- * CONFIGURAÇÕES INICIAIS E IMPORTAÇÕES
- * ============================================
- */
+//CONFIGURAÇÕES INICIAIS E IMPORTAÇÕES
+
 import 'dotenv/config';
 import express from 'express';
 import session from 'express-session';
@@ -62,11 +59,8 @@ app.use(session({
 // Para usar as rotas definidas em src/routes.js
 app.use(routes);
 
-/**
- * ============================================
- * INICIALIZAÇÃO DO SERVIDOR
- * ============================================
- */
+//INICIALIZAÇÃO DO SERVIDOR
+
 app.listen(PORT, HOST, () => {
     const displayHost = HOST === '0.0.0.0' ? 'localhost' : HOST;
     console.log(`Servidor rodando em http://${displayHost}:${PORT}`);
