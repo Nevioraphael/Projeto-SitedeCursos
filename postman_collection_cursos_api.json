@@ -1,0 +1,130 @@
+{
+  "info": {
+    "name": "Cursos API - Projeto SitedeCursos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Coleção para testar end-points de cursos (GET, POST, PUT, DELETE)"
+  },
+  "item": [
+    {
+      "name": "1 - Listar cursos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/cursos",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cursos"]
+        }
+      }
+    },
+    {
+      "name": "2 - Criar curso",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"React do Zero\",\n  \"descricao\": \"Curso completo de React, de 0 a 100\",\n  \"data_inicio\": \"2026-04-01\",\n  \"duracao\": \"4 semanas\",\n  \"preco\": 199.9,\n  \"carga_horaria\": 40,\n  \"instrutor\": \"Ana\",\n  \"nivel\": \"iniciante\",\n  \"vagas_disponiveis\": 20,\n  \"imagem\": \"/images/react.jpg\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/cursos",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cursos"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const data = pm.response.json();",
+              "if (data && data.id) {",
+              "    pm.environment.set('cursoId', data.id);",
+              "    console.log('cursoId set to', data.id);",
+              "}",
+              "pm.test('Status code is 201', () => pm.response.to.have.status(201));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "3 - Obter curso por ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/cursos/{{cursoId}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cursos", "{{cursoId}}"]
+        }
+      }
+    },
+    {
+      "name": "4 - Atualizar curso",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"descricao\": \"Descrição atualizada no teste Postman\",\n  \"preco\": 179.9,\n  \"vagas_disponiveis\": 25\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/cursos/{{cursoId}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cursos", "{{cursoId}}"]
+        }
+      }
+    },
+    {
+      "name": "5 - Excluir curso",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/cursos/{{cursoId}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cursos", "{{cursoId}}"]
+        }
+      }
+    },
+    {
+      "name": "6 - Curso por nível",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/nivel/iniciante",
+          "host": ["{{base_url}}"],
+          "path": ["api", "nivel", "iniciante"]
+        }
+      }
+    }
+  ],
+  "event": []
+}
